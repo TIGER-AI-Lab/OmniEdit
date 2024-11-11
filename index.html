@@ -1,3 +1,588 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description"
+          content="OmniEdit is an instruction-based image editing generalist capable of performing diverse editing tasks across different aspect ratios and resolutions. It accurately follows instructions while preserving the original image’s fidelity.">
+    <meta property="og:title"
+          content="OmniEdit: Building Image Editing Generalist Models Through Specialist Supervision"/>
+    <meta property="og:description"
+          content="OmniEdit is an instruction-based image editing generalist capable of performing diverse editing tasks across different aspect ratios and resolutions. It accurately follows instructions while preserving the original image’s fidelity."/>
+    <meta property="og:url" content="https://tiger-ai-lab.github.io/OmniEdit/"/>
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="static/images/uniir_teaser.jpg"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+
+
+    <!--    <meta name="twitter:title" content="UniIR: Training and Benchmarking Universal Multimodal Information Retrievers">-->
+    <!--    <meta name="twitter:description" content="We introduce UniIR, a unified instruction-guided multimodal retriever capable of handling eight distinct retrieval tasks across modalities.">-->
+    <!--    &lt;!&ndash; Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600&ndash;&gt;-->
+    <!--    <meta name="twitter:image" content="static/images/uniir_teaser.jpg">-->
+    <!--    <meta name="twitter:card" content="summary_large_image">-->
+    <!--    &lt;!&ndash; Keywords for your paper to be indexed by&ndash;&gt;-->
+    <!--    <meta name="keywords" content="uniir">-->
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+
+
+    <title>OmniEdit</title>
+    <link rel="icon" type="image/x-icon" href="static/images/uniir_icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="static/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="static/js/jquery.dataTables.js"></script>
+</head>
+
+<body>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">
+                        OmniEdit: Building Image Editing Generalist Models Through Specialist Supervision
+                    </h1>
+                    <div class="is-size-5 publication-authors">
+                        <!-- Paper authors -->
+                        <span class="author-block">
+                                  <sup>♠️</sup><a href="https://congwei1230.github.io/" target="_blank">Cong Wei</a>,
+                        </span>
+                        <span class="author-block">
+                                      <sup>♣</sup><a href="https://scholar.google.com/citations?user=eFY3cj4AAAAJ&hl=en" target="_blank">Zheyang Xiong</a>,
+                        </span>
+                        <span class="author-block">
+                                  <sup>♠️</sup><a href="https://cs.uwaterloo.ca/~w2ren/"
+                                                  target="_blank">Weiming Ren</a>,
+                        </span>
+                        <span class="author-block">
+                                  <sup>†</sup><a href="https://scholar.google.com/citations?user=Bn01uUMAAAAJ&hl=zh-CN" target="_blank">Xinrun Du</a>,
+                        </span>
+                        <span class="author-block">
+                                  <sup>♠️</sup><a href="https://scholar.google.com/citations?user=qyTrq4kAAAAJ&hl=zh-CN"
+                                                  target="_blank">Ge Zhang</a>,
+                        </span>
+                        <span class="author-block">
+                                  <sup>♠️</sup><a href="https://wenhuchen.github.io/" target="_blank">Wenhu Chen</a>
+                        </span>
+                    </div>
+
+                    <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                            <sup>♠️</sup>University of Waterloo,
+                            <sup>♣</sup>University of Wisconsin Madison,
+                            <sup>†</sup>01.AI,
+                            </span>
+<!--                        <span class="author-block">-->
+<!--                                <small>-->
+<!--                                    cong.wei@uwaterloo.ca,-->
+<!--                                    zxiong44@wisc.edu,-->
+<!--                                    w2ren@uwaterloo.ca,-->
+<!--                                    xinrun.du@bupt.edu.cn-->
+<!--                                    ge.zhang@uwaterloo.ca,-->
+<!--                                    wenhuchen@uwaterloo.ca-->
+<!--                                </small>-->
+<!--                            </span>-->
+
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+
+                                <span class="link-block">
+                                  <a href="https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Raw-Scored" target="_blank"
+                                     class="external-link button is-normal is-rounded is-dark">
+                                      <span class="icon">
+                                        🤗
+                                      </span>
+                                      <span>TODO: Dataset(Raw with VIEscore)</span>
+                                  </a>
+                                </span>
+
+                                <span class="link-block">
+                                  <a href="https://huggingface.co/datasets/TIGER-Lab/OmniEdit-GPT-4o-VIEScore" target="_blank"
+                                     class="external-link button is-normal is-rounded is-dark">
+                                      <span class="icon">
+                                        🤗
+                                      </span>
+                                      <span>TODO: Dataset(GPT4o-VIEscore)</span>
+                                  </a>
+                                </span>
+
+                                <span class="link-block">
+                                  <a href="https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Train" target="_blank"
+                                     class="external-link button is-normal is-rounded is-dark">
+                                      <span class="icon">
+                                        🤗
+                                      </span>
+                                      <span>TODO: Dataset(Clean Data with VIEscore>=9)</span>
+                                  </a>
+                                </span>
+
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Train" target="_blank"
+                                       class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                          🤗
+                                        </span>
+                                        <span>TODO: Models(Checkpoints)</span>
+                                    </a>
+                                </span>
+
+                                <!-- Github link -->
+                                <span class="link-block">
+                                      <a href="https://github.com/TIGER-AI-Lab/OmniEdit" target="_blank"
+                                         class="external-link button is-normal is-rounded is-dark">
+                                      <span class="icon">
+                                        <i class="fab fa-github"></i>
+                                      </span>
+                                          <span>TODO: Code</span>
+                                      </a>
+                                </span>
+
+                            <!--                                <span class="link-block">-->
+                            <!--                                    <a href="index.html" target="_blank"-->
+                            <!--                                    class="external-link button is-normal is-rounded is-dark">-->
+                            <!--                                        <span>📘 Docs</span>-->
+                            <!--                                    </a>-->
+                            <!--                                </span>-->
+
+<!--                            &lt;!&ndash; ArXiv abstract Link &ndash;&gt;-->
+<!--                            <span class="link-block">-->
+<!--                                <a href="https://arxiv.org/abs/2311.17136" target="_blank"-->
+<!--                                   class="external-link button is-normal is-rounded is-dark">-->
+<!--                                      <span class="icon">-->
+<!--                                        <i class="ai ai-arxiv"></i>-->
+<!--                                      </span>-->
+<!--                                <span>arXiv</span>-->
+<!--                                </a>-->
+<!--                                </span>-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--    <section class="section hero is-light">-->
+<!--      <div class="container is-max-desktop">-->
+<!--        <div class="columns is-centered has-text-centered">-->
+<!--          <div class="column is-four-fifths">-->
+<!--            <h1 class="title is-3">Abstract</h1>-->
+<!--            <div class="content has-text-justified">-->
+<!--                            <p>Existing information retrieval (IR) models often assume a homogeneous format, limiting their applicability to diverse user needs, such as searching for images with text descriptions, searching for a news article with a headline image, or finding a similar photo with a query image.-->
+<!--To approach such different information-seeking demands, we introduce UniIR<img src="static/images/uniir_icon.png" width="2%" alt="UniIR Icon" />, a unified instruction-guided multimodal retriever capable of handling eight distinct retrieval tasks across modalities.-->
+<!--UniIR, a single retrieval system jointly trained on ten diverse multimodal-IR datasets, interprets user instructions to execute various retrieval tasks, demonstrating robust performance across existing datasets and zero-shot generalization to new tasks.-->
+<!--Our experiments highlight that multi-task training and instruction tuning are keys to UniIR's generalization ability.-->
+<!--Additionally, we construct the M-BEIR, a multimodal retrieval benchmark with comprehensive results, to standardize the evaluation of universal multimodal information retrieval.-->
+<!--                            </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+
+<!--&lt;!&ndash;    &lt;!&ndash; Paper abstract &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <section class="hero">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="hero-body">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="container is-max-desktop">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="columns is-centered">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="column has-text-centered">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h2 class="title is-3">Abstract</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="content has-text-justified">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <p>Existing information retrieval (IR) models often assume a homogeneous format, limiting their applicability to diverse user needs, such as searching for images with text descriptions, searching for a news article with a headline image, or finding a similar photo with a query image.&ndash;&gt;-->
+<!--&lt;!&ndash;To approach such different information-seeking demands, we introduce UniIR<img src="static/images/uniir_icon.png" width="2%" alt="UniIR Icon" />, a unified instruction-guided multimodal retriever capable of handling eight distinct retrieval tasks across modalities.&ndash;&gt;-->
+<!--&lt;!&ndash;UniIR, a single retrieval system jointly trained on ten diverse multimodal-IR datasets, interprets user instructions to execute various retrieval tasks, demonstrating robust performance across existing datasets and zero-shot generalization to new tasks.&ndash;&gt;-->
+<!--&lt;!&ndash;Our experiments highlight that multi-task training and instruction tuning are keys to UniIR's generalization ability.&ndash;&gt;-->
+<!--&lt;!&ndash;Additionally, we construct the M-BEIR, a multimodal retrieval benchmark with comprehensive results, to standardize the evaluation of universal multimodal information retrieval.&ndash;&gt;-->
+<!--&lt;!&ndash;                            </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </section>&ndash;&gt;-->
+<!--&lt;!&ndash;    &lt;!&ndash; End paper abstract &ndash;&gt;&ndash;&gt;-->
+
+<!--    &lt;!&ndash; Image carousel &ndash;&gt;-->
+<!--    <section class="hero">-->
+<!--        <div class="hero-body">-->
+<!--            <div class="container is-max-desktop">-->
+<!--                <div class="columns is-centered">-->
+<!--                    <div class="column is-full">-->
+<!--                        <div class="item">-->
+<!--                            &lt;!&ndash; Your image here &ndash;&gt;-->
+<!--                            <img src="static/images/uniir_teaser.jpg" alt="UniIR" />-->
+<!--                            <h2 class="subtitle">-->
+<!--                                Figure 1: We build a universal multimodal information retriever UniIR through instruction tuning. UniIR is capable of accepting any form-->
+<!--of query and instruction to retrieve information in any modality.-->
+<!--                            </h2>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    &lt;!&ndash; End image carousel &ndash;&gt;-->
+
+
+<!--    <section class="section hero is-light">-->
+<!--      <div class="container is-max-desktop">-->
+<!--        <div class="columns is-centered has-text-centered">-->
+<!--          <div class="column is-four-fifths">-->
+<!--            <h1 class="title is-1">UniIR<img src="static/images/uniir_icon.png" width="5%" alt="UniIR Icon" /></h1>-->
+<!--            <div class="content has-text-justified">-->
+<!--              <p>-->
+<!--                We propose the UniIR(<b>Uni</b>versal multimodal <b>I</b>nformation <b>R</b>etrieval) framework to learn a-->
+<!--                single retriever to accomplish (possibly) any retrieval task.-->
+<!--                Unlike traditional IR systems, UniIR needs to follow the instructions to take a heterogeneous query to retrieve from a-->
+<!--                heterogeneous candidate pool with millions of candidates-->
+<!--                in diverse modalities.-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+
+<!--        &lt;!&ndash; Image carousel &ndash;&gt;-->
+<!--    <section class="hero">-->
+<!--        <div class="hero-body">-->
+<!--            <div class="container is-max-desktop">-->
+<!--                <div class="columns is-centered">-->
+<!--                    <div class="column is-full">-->
+<!--                        <div class="item">-->
+<!--                            &lt;!&ndash; Your image here &ndash;&gt;-->
+<!--                            <img src="static/images/problem.png" alt="UniIR" />-->
+<!--&lt;!&ndash;                            <h2 class="subtitle">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Figure 1: We build a universal multimodal information retriever UniIR through instruction tuning. UniIR is capable of accepting any form&ndash;&gt;-->
+<!--&lt;!&ndash;of query and instruction to retrieve information in any modality.&ndash;&gt;-->
+<!--&lt;!&ndash;                            </h2>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    &lt;!&ndash; End image carousel &ndash;&gt;-->
+
+
+<!--    <section class="section hero is-light">-->
+<!--      <div class="container is-max-desktop">-->
+<!--        <div class="columns is-centered has-text-centered">-->
+<!--          <div class="column is-four-fifths">-->
+<!--            <h1 class="title is-1">UniIR Models</h1>-->
+<!--            <div class="content has-text-justified">-->
+<!--              <p>-->
+<!--                We experimented with two multimodal fusion mechanisms for UniIR models,-->
+<!--                  namely score-level fusion and feature-level fusion. To explore the effectiveness of these approaches,-->
+<!--                  we adapted pre-trained models such as CLIP-->
+<!--                  and BLIP for our purposes as follows. Instructions were-->
+<!--integrated as prefixes to the text query for UniIR models.-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+<!--     &lt;!&ndash; Image carousel &ndash;&gt;-->
+<!--    <section class="hero">-->
+<!--        <div class="hero-body">-->
+<!--            <div class="container is-max-desktop">-->
+<!--                <div class="columns is-centered">-->
+<!--                    <div class="column is-full">-->
+<!--                        <div class="item">-->
+<!--                            &lt;!&ndash; Your image here &ndash;&gt;-->
+<!--                            <img src="static/images/Figure2.png" alt="UniIR" />-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    &lt;!&ndash; End image carousel &ndash;&gt;-->
+
+
+<!--    <section class="section hero is-light">-->
+<!--      <div class="container is-max-desktop">-->
+<!--        <div class="columns is-centered has-text-centered">-->
+<!--          <div class="column is-four-fifths">-->
+<!--            <h1 class="title is-1">M-BEIR Benchmark</h1>-->
+<!--            <div class="content has-text-justified">-->
+<!--              <p>-->
+<!--To train and evaluate unified multimodal retrieval models,-->
+<!--we build a large-scale retrieval benchmark named M-BEIR-->
+<!--(<b>M</b>ultimodal <b>BE</b>nchmark for <b>I</b>nstructed <b>R</b>etrieval). The-->
+<!--M-BEIR benchmark comprises 8 multimodal retrieval-->
+<!--tasks and 10 datasets from a variety of domains and image-->
+<!--sources.  Each task is accompanied by human-authored instructions, encompassing <b>1.5 million queries</b> and a pool of-->
+<!--<b>5.6 million retrieval candidates</b> in total.-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+
+<!--    <section class="hero">-->
+<!--        <div class="hero-body">-->
+<!--            <div class="container is-max-desktop">-->
+<!--                <div class="columns is-centered">-->
+<!--                    <div class="column has-text-centered is-fifths-fifths">-->
+<!--&lt;!&ndash;                        <h2 class="title is-3">Benchmarking universal information retrieval on M-BEIR</h2>&ndash;&gt;-->
+<!--                        <div class="content has-text-justified">-->
+<!--                            <div class="buttonGroup" data-target-display="#imageDisplayArea0">-->
+<!--                                <button value="Statistic" data-img-path="static/images/Table1.png">Statistics</button>-->
+<!--                                <button value="Example" data-img-path="static/images/Figure3.png">Example</button>-->
+<!--                            </div>-->
+<!--                            <div id="imageDisplayArea0">-->
+<!--                                <img id="displayedImage0" src="static/images/Figure3.png" alt="Example" />-->
+<!--                            </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+<!--&lt;!&ndash; &lt;!&ndash; Image carousel &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <section class="hero">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="hero-body">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="container is-max-desktop">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="columns is-centered">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="column is-full">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="item">&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash; Your image here &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            <img src="static/images/Table1.png" alt="UniIR" />&ndash;&gt;-->
+<!--&lt;!&ndash;                            <img src="static/images/Figure3.png" alt="UniIR" />&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </section>&ndash;&gt;-->
+<!--&lt;!&ndash;    &lt;!&ndash; End image carousel &ndash;&gt;&ndash;&gt;-->
+
+
+<!--    <section class="section hero is-light">-->
+<!--      <div class="container is-max-desktop">-->
+<!--        <div class="columns is-centered has-text-centered">-->
+<!--          <div class="column is-full">-->
+<!--            <h1 class="title is-1">Benchmarking UniIR on M-BEIR</h1>-->
+<!--              <div class="content has-text-justified">-->
+<!--              <p>-->
+<!--Our evaluation encompasses zero-shot SoTA models,-->
+<!--                  multi-task fine-tuned baselines (fine-tuned jointly on all M-BEIR training data without incorporating instructions),-->
+<!--                  and UniIR models.-->
+<!--                  Retrieval is performed from the M-BEIR 5.6 million candidate pool, which consists of the retrieval corpus from all tasks. We demonstrate that zero-shot models struggle to retrieve queried information from such a heterogeneous pool and-->
+<!--instruction-tuning as a crucial component of UniIR.-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+
+<!--&lt;!&ndash;<section class="hero">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="hero-body">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="container is-max-desktop">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="columns is-centered">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="column has-text-centered is-fifths-fifths">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                        <h2 class="title is-3">Benchmarking universal information retrieval on M-BEIR</h2>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="content has-text-justified">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="buttonGroup" data-target-display="#imageDisplayArea1">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <button value="BenchmarkMBEIR" data-img-path="static/images/Table2.png">Benchmarking UniIR on M-BEIR</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <button value="HeldOutDataset Generalization" data-img-path="static/images/Figure5.png">Evaluate UniIR's generalization capability on held-out datasets.</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            <div id="imageDisplayArea1">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <img id="displayedImage1" src="static/images/Table2.png" alt="Benchmarking universal information retrieval on M-BEIR" />&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </section>&ndash;&gt;-->
+
+
+<!--     &lt;!&ndash; Image carousel &ndash;&gt;-->
+<!--    <section class="hero">-->
+<!--        <div class="hero-body">-->
+<!--            <div class="container is-max-desktop">-->
+<!--                <div class="columns is-centered">-->
+<!--                    <div class="column is-full">-->
+<!--                        <div class="item">-->
+<!--                            &lt;!&ndash; Your image here &ndash;&gt;-->
+<!--                            <img src="static/images/Table2.png" alt="Benchmarking UniIR on M-BEIR" />-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    &lt;!&ndash; End image carousel &ndash;&gt;-->
+
+
+<!--    <section class="hero">-->
+<!--        <div class="hero-body">-->
+<!--            <div class="container is-max-desktop">-->
+<!--                <div class="columns is-centered">-->
+<!--                    <div class="column has-text-centered is-fifths-fifths">-->
+<!--                        <h2 class="title is-3">Top 5 Candidates Retrieved from M-BEIR</h2>-->
+<!--                        <div class="content has-text-justified">-->
+<!--                            <div class="buttonGroup"  data-target-display="#imageDisplayArea2">-->
+<!--                                <button value="VisualNews" data-img-path="static/images/retrieval_results/visualnews.png">VisualNews</button>-->
+<!--                                <button value="MSCOCO" data-img-path="static/images/retrieval_results/mscoco.png">MSCOCO</button>-->
+<!--                                <button value="Fashion200K" data-img-path="static/images/retrieval_results/fashion200k.png">Fashion200K</button>-->
+<!--                                <button value="EDIS" data-img-path="static/images/retrieval_results/edis.png">EDIS</button>-->
+<!--                                <button value="WebQA" data-img-path="static/images/retrieval_results/webqa.png">WebQA</button>-->
+<!--                                <button value="NIGHTS" data-img-path="static/images/retrieval_results/nights.png">NIGHTS</button>-->
+<!--                                <button value="FashionIQ" data-img-path="static/images/retrieval_results/fashioniq.png">FashionIQ</button>-->
+<!--                                <button value="CIRR" data-img-path="static/images/retrieval_results/cirr.png">CIRR</button>-->
+<!--                                <button value="OVEN" data-img-path="static/images/retrieval_results/oven.png">OVEN</button>-->
+<!--                                <button value="InfoSeek" data-img-path="static/images/retrieval_results/infoseek.png">InfoSeek</button>-->
+<!--                            </div>-->
+
+<!--                            <div id="imageDisplayArea2">-->
+<!--                                <img id="displayedImage2" src="static/images/retrieval_results/visualnews.png" alt="VisualNews" />-->
+<!--                            </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+
+<!--        <section class="section hero is-light">-->
+<!--      <div class="container is-max-desktop">-->
+<!--        <div class="columns is-centered has-text-centered">-->
+<!--          <div class="column is-full">-->
+<!--            <h1 class="title is-1">UniIR generalizes to unseen retrieval tasks</h1>-->
+<!--              <div class="content has-text-justified">-->
+<!--              <p>-->
+<!--During the multi-task fine-tuning stage of UniIR, we excluded three-->
+<!--datasets (WebQA, OVEN, CIRR) and fine-tuned UniIR-->
+<!--models and multi-task baselines on the remaining M-BEIR-->
+<!--datasets. At test time, we evaluated the zero-shot performance of all fine-tuned models,-->
+<!--as well as SoTA pre-trained retrievers on-->
+<!--the three held-out datasets. UniIR models exhibit superior generalization abilities on unseen tasks and datasets compared to baselines.-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+
+<!--&lt;!&ndash; Image carousel &ndash;&gt;-->
+<!--<section class="hero">-->
+<!--    <div class="hero-body">-->
+<!--        <div class="container is-max-desktop">-->
+<!--            <div class="columns is-centered">-->
+<!--                &lt;!&ndash; First Image Column &ndash;&gt;-->
+<!--                <div class="column is-half">-->
+<!--                    <div class="item">-->
+<!--                        <img src="static/images/Figure5.png" alt="Evaluate UniIR's generalization capability on held-out datasets." />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                &lt;!&ndash; Second Image Column &ndash;&gt;-->
+<!--                <div class="column is-half">-->
+<!--                    <div class="item">-->
+<!--                        <img src="static/images/Table7.png" alt="Evaluate UniIR's generalization capability on held-out datasets." />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+<!--    &lt;!&ndash; End image carousel &ndash;&gt;-->
+
+
+<!--&lt;!&ndash; BibTex citation &ndash;&gt;-->
+<!--<section class="section" id="BibTeX">-->
+<!--    <div class="container is-max-desktop content">-->
+<!--        <h2 class="title">Reference</h2>-->
+<!--        Please kindly cite our paper if you use our code, data, models or results:-->
+<!--        <br><br>-->
+<!--        <pre><code>@article{wei2023uniir,-->
+<!--  title={Uniir: Training and benchmarking universal multimodal information retrievers},-->
+<!--  author={Wei, Cong and Chen, Yang and Chen, Haonan and Hu, Hexiang and Zhang, Ge and Fu, Jie and Ritter, Alan and Chen, Wenhu},-->
+<!--  journal={arXiv preprint arXiv:2311.17136},-->
+<!--  year={2023}-->
+<!--}</code></pre>-->
+<!--    </div>-->
+<!--</section>-->
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content">
+
+                    <p>
+                        This page was built using the <a
+                            href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic
+                        Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io"
+                                                                                target="_blank">Nerfies</a> project
+                        page. You are free to borrow the of this website, we just ask that you link back to this page in
+                        the footer. <br> This website is licensed under a <a rel="license"
+                                                                             href="http://creativecommons.org/licenses/by-sa/4.0/"
+                                                                             target="_blank">Creative
+                        Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+<style>
+    .buttonGroup {
+        text-align: center;
+    }
+
+    .buttonGroup > button {
+        padding: 15px;
+        color: white;
+        background-color: #363636;
+        border-radius: 5px;
+    }
+
+    .buttonGroup > button:hover {
+        box-shadow: 5px;
+    }
+</style>
+
 </html>
