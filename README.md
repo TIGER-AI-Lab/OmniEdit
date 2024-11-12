@@ -1,2 +1,2 @@
 # OmniEdit
-Official Repo for OMNIEDIT: BUILDING IMAGE EDITING GENERALIST MODELS THROUGH SPECIALIST SUPERVISION
+Official Repo for [OmniEdit: Building Image Editing Generalist Models Through Specialist Supervision](https://arxiv.org/abs/2411.07199)
