@@ -112,7 +112,7 @@
                                       <span class="icon">
                                         🤗
                                       </span>
-                                      <span>Training Data</span>
+                                      <span>Training Data(OmniEdit-Filtered-1.2M)</span>
                                   </a>
                                 </span>
 
@@ -126,6 +126,98 @@
                                           <span>Code</span>
                                       </a>
                                 </span>
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h1 class="title is-3">OMNI-EDIT</h1>
+            <div class="content has-text-justified">
+                            <p>We present OMNI-EDIT, which is an omnipotent editor to handle seven different image editing tasks with any aspect ratio seamlessly. Our contribution is in two folds: </p>
+                                <p>(1) OMNI-EDIT is trained by utilizing the supervision
+from <b>seven different specialist models</b> to ensure task coverage.</p>
+                <p>(2) we utilize importance sampling based on the <b>scores provided by large multimodal models</b> (like GPT-4o) instead of CLIP-score to improve the data quality. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- Image carousel -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column is-full">
+                        <div class="item">
+                            <!-- Your image here -->
+                            <img src="static/images/teaser.png" alt="OmniEdit" />
+                            <h2 class="subtitle">
+                                Overview of the OMNI-EDIT training pipeline. The pipeline consists of four stages: (1) task-specific specialist models are trained for diverse editing tasks; (2) these specialist models are used to generate a large, high-resolution, multi-aspect-ratio dataset; (3) a cost-efficient distilled large multi-modal model (LMM) assigns importance weights to each pair of image-editing data; and (4) the final generalist model is trained on the weighted dataset.
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End image carousel -->
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h1 class="title is-1">OMNI-EDIT-Filtered-1.2M</h1>
+            <div class="content has-text-justified">
+              <p>
+We synthesize the large scale dataset through specialist distillation and cost-efficient LMM filtering.
+Our released version contains 1.2M pairs covering seven different skills like addition, swaping, removal, attribute modification, background change, environment change and sytle transfer. The dataset has been filtered with VIEScore.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+            <!-- Image carousel -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column is-full">
+                        <div class="item">
+                            <!-- Your image here -->
+                            <img src="static/images/comparison.png" alt="OmniEdit" />
+                            <h2 class="subtitle">
+                                Our dataset has the most diverse, highest-quality image editing pairs of any resolution.
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            <!-- Image carousel -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column is-full">
+                        <div class="item">
+                            <!-- Your image here -->
+                            <img src="static/images/vis.png" alt="OmniEdit" />
+                            <h2 class="subtitle">
+                                Editing high-resolution multi-aspect images with OMNI-EDIT. OMNI-EDIT is an
+instruction-based image editing generalist capable of performing diverse editing tasks across different aspect ratios and resolutions. It accurately follows instructions while preserving the original
+image’s fidelity.
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
                         </div>
                     </div>
                 </div>
@@ -133,6 +225,24 @@
         </div>
     </div>
 </section>
+
+
+    <!-- BibTex citation -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">Citation</h2>
+            If you find our paper useful, please cite us with:
+            <br><br>
+            <pre><code>
+@article{wei2024omniedit,
+  title={OmniEdit: Building Image Editing Generalist Models Through Specialist Supervision},
+  author={Wei, Cong and Xiong, Zheyang and Ren, Weiming and Du, Xinrun and Zhang, Ge and Chen, Wenhu},
+  journal={arXiv preprint arXiv:2411.07199},
+  year={2024}
+}
+</code></pre>
+        </div>
+    </section>
 
 <footer class="footer">
     <div class="container">

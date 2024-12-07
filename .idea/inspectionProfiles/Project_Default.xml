@@ -1,0 +1,22 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="9">
+            <item index="0" class="java.lang.String" itemvalue="tqdm" />
+            <item index="1" class="java.lang.String" itemvalue="torchmetrics" />
+            <item index="2" class="java.lang.String" itemvalue="transformers" />
+            <item index="3" class="java.lang.String" itemvalue="diffusers" />
+            <item index="4" class="java.lang.String" itemvalue="opencv-python" />
+            <item index="5" class="java.lang.String" itemvalue="taming-transformers-rom1504" />
+            <item index="6" class="java.lang.String" itemvalue="pillow" />
+            <item index="7" class="java.lang.String" itemvalue="lang-segment-anything" />
+            <item index="8" class="java.lang.String" itemvalue="einops" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
