@@ -1,5 +1,5 @@
 # OmniEdit
-Official Repo for [OmniEdit: Building Image Editing Generalist Models Through Specialist Supervision](https://arxiv.org/abs/2411.07199)
+Official Repo for ICLR2025 paper [OmniEdit: Building Image Editing Generalist Models Through Specialist Supervision](https://arxiv.org/abs/2411.07199)
 
 In this paper, we present OMNI-EDIT, which is an omnipotent editor to handle seven different image editing tasks with any aspect ratio seamlessly. Our contribution is in four folds: (1) OMNI-EDIT is trained by utilizing the supervision
 from seven different specialist models to ensure task coverage. (2) we utilize importance sampling based on the scores provided by large multimodal models (like GPT-4o) instead of CLIP-score to improve the data quality. 
